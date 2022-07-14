@@ -1,32 +1,26 @@
-const express=require('express');
-const app=express();
-const cors=require('cors');
-const dotenv=require('dotenv');
-const { urlencoded } = require('express');
-dotenv.config();
+import { getAllDAta } from './controllers/products.js';
+import express from 'express'; 
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-const dbService=require("./dbService.js");
+const app=express();
+
+dotenv.config();
+const router=express.Router();
+
 
 app.use(cors());
 app.use(express.json());
-app.use(urlencoded({extended : false}));
+app.use(express.urlencoded({extended : false}));
 
 
 //create
-app.post('/insert',(request,response)=>{
-
+router.post('/insert',(request,response)=>{
+        console.log(request.body);
 });
 
 //read
-app.get('/getAll',(request,response)=>{
-
-    const db = dbService.getDbServiceInstance();
-    const result = db.getAllData();
-    
-    result
-    .then(data => response.json({data : data}))
-    .catch(err => console.log(err));
-})
+router.get('/getAll',getAllDAta);
 
 //update
 

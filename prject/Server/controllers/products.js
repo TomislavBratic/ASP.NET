@@ -1,13 +1,6 @@
-import connection from '../dbService';
-let instance = null;
+import {connection} from "../dbService.js";
 
-
-class DbService {
-    static getDbServiceInstance() {
-        return instance ? instance : new DbService();
-    }
-
-    async getAllData() {
+    export const getAllDAta=async()=>{
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM productcomponent;";
@@ -23,6 +16,7 @@ class DbService {
             console.log(error);
         }
     }
-}
 
-module.exports=DbService;
+
+
+    
